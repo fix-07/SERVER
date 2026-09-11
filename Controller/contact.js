@@ -10,7 +10,7 @@ exports.addUsers =async (req,res)=>{
        const contactAdd= new Contact(req.body)
        await contactAdd.save()
        res.status(201).send(contactAdd)
-    
+
     } catch (error) {
         console.error(error)
        res.status(500).send({ error: 'Unable to add contact' })
@@ -26,14 +26,14 @@ exports.getUsers = async(req,res)=>{
         res.status(200).send(contacts)
     } catch (error) {
         res.status(500).send('error')
-        
+
     }
 }
 exports.updateUser = async(req,res)=>{
     try {
         const {id} = req.params
         const contact = await Contact.findByIdAndUpdate(id,{$set:req.body})
-    
+
         res.status(200).send("done")
 
     } catch (error) {
@@ -43,11 +43,11 @@ exports.updateUser = async(req,res)=>{
 exports.getUserById = async(req,res)=>{
     try {
         const {id} = req.params
-        const contact = await Contact.findById(id) 
+        const contact = await Contact.findById(id)
         res.status(200).send(contact)
     } catch (error) {
         res.status(500).send('Unable to get contact')
-    }  
+    }
 
 }
 exports.deleteUser = async(req,res)=>{
